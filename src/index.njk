@@ -1,0 +1,15 @@
+---
+layout: main.njk
+title: Connections Helper
+---
+
+{% set words = ["one", "two", "three", "four", "red", "green", "blue", "yellow", "mercury", "venus", "earth", "mars", "gold", "silver", "bronze", "platinum"] %}
+{% set alpha = words | sort %}
+
+<div class="container">
+  {% for word in alpha %}
+  <div class="droptarget">
+    <div class="dragme" draggable="true" id="item{{loop.index}}">{{ word }}</div>
+  </div>
+  {% endfor %}
+</div>
