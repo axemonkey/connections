@@ -8,7 +8,7 @@ title: Connections Helper
 
 <div class="container">
   {% for word in alpha %}
-  <div class="droptarget">
+  <div class="droptarget" id="drop{{loop.index}}">
     <div class="dragme" draggable="true" id="item{{loop.index}}">{{ word }}</div>
   </div>
   {% endfor %}

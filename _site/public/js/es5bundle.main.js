@@ -4,9 +4,13 @@
 	const dragStart = event => {
 	  console.log('drag starts');
 	  console.log(event);
-	  event.dataTransfer.setData('text/plain', event.target.id);
+	  const item = event.target;
+	  const sourceZone = item.closest('.droptarget');
+	  const info = `${item.id}-${sourceZone.id}`;
+	  console.log(info);
+	  event.dataTransfer.setData('text/plain', info);
 	  window.setTimeout(() => {
-	    event.target.classList.add('dragging');
+	    item.classList.add('dragging');
 	  }, 0);
 	};
 	const dragEnter = event => {
@@ -28,14 +32,29 @@
 
 	  const dropLocation = event.target;
 	  const dropTarget = dropLocation.classList.contains('droptarget') ? dropLocation : dropLocation.closest('.droptarget');
+	  console.log(`dropTarget.id: ${dropTarget.id}`);
 	  dropTarget.classList.remove('drag-over');
-	  const dropId = event.dataTransfer.getData('text/plain');
+	  const info = event.dataTransfer.getData('text/plain');
+	  const dropId = info.split('-')[0];
+	  const sourceId = info.split('-')[1];
+	  console.log(`dropId: ${dropId}`);
+	  console.log(`sourceId: ${sourceId}`);
 	  const draggable = document.querySelector(`#${dropId}`);
-	  while (dropTarget.firstChild) {
-	    dropTarget.removeChild(dropTarget.firstChild);
-	  }
+	  const dropSource = document.querySelector(`#${sourceId}`);
+
+	  // while (dropTarget.firstChild) {
+	  // 	dropTarget.removeChild(dropTarget.firstChild);
+	  // }
+
+	  const displacedNode = dropTarget.querySelector('.dragme');
+	  console.log('this should be the one that gets shoved out');
+	  console.log(displacedNode);
+	  const displaced = dropTarget.removeChild(displacedNode);
+	  console.log(`displaced.id: ${displaced.id}`);
+	  dropSource.append(displaced);
+	  displaced.classList.remove('drag-over');
 	  dropTarget.appendChild(draggable);
-	  draggable.classList.remove('hide');
+	  draggable.classList.remove('dragging');
 	};
 	const noop = () => {
 	  console.log('noop');
