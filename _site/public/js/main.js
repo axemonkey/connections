@@ -1,6 +1,5 @@
 const dragStart = event => {
 	console.log('drag starts');
-	console.log(event);
 
 	const item = event.target;
 	const sourceZone = item.closest('.droptarget');
