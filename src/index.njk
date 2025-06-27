@@ -1,21 +1,21 @@
 ---
-layout: main.njk
+layout: page.njk
 title: Connections Helper
 ---
 
 {% set words = ["dog", "little spoon", "iris", "water bottle", "too close", "lens", "bent", "rod", "cone", "one week", "potato", "point of view", "angle", "cup", "closing time", "scoop"] %}
 {% set alpha = words | sort %}
 
-<div class="container">
-  {% for word in alpha %}
-  {% if loop.index0 % 4 == 0 %}
-    <div class="row">
-  {% endif %}
-  <div class="droptarget" id="drop{{loop.index}}">
-    <div class="dragme" draggable="true" id="item{{loop.index}}">{{ word }}</div>
-  </div>
-  {% if loop.index0 % 4 == 3 %}
-    </div>
-  {% endif %}
-  {% endfor %}
+<div class="container nyt-col">
+{% for word in alpha %}
+{% if loop.index0 % 4 == 0 %}
+<div class="row row{{ loop.index0 / 4 }}">
+{% endif %}
+<div class="droptarget" id="drop{{loop.index}}">
+	<div class="dragme" draggable="true" id="item{{loop.index}}">{{ word }}</div>
+</div>
+{% if loop.index0 % 4 == 3 %}
+</div>
+{% endif %}
+{% endfor %}
 </div>

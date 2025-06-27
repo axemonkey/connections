@@ -12,6 +12,6 @@ trim_trailing_whitespace = false
 [*.yml]
 indent_style = space
 
-[*.{js,scss,hbs,svg}]
+[*.{js,scss,hbs,svg,njk}]
 indent_style = tab
 indent_size = 2

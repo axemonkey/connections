@@ -1,6 +1,19 @@
 (function () {
 	'use strict';
 
+	/*
+
+	TODO:
+
+	* update page to enter new things
+	* add shuffle button
+	* lock rows
+	* about page
+	* main styling
+	* store prefs in localStorage
+
+	*/
+
 	const dragStart = event => {
 	  console.log('drag starts');
 	  const item = event.target;
@@ -75,10 +88,23 @@
 	    target.addEventListener('drop', drop);
 	  }
 	};
+	const boxChange = event => {
+	  const container = document.querySelector('.container');
+	  if (event.target.checked) {
+	    container.classList.add('nyt-col');
+	  } else {
+	    container.classList.remove('nyt-col');
+	  }
+	};
+	const setupCheckbox = () => {
+	  const cb = document.querySelector('#nytc');
+	  cb.addEventListener('change', boxChange);
+	};
 	const init = () => {
 	  console.log('JS loaded');
 	  setupDraggables();
 	  setupDroptargets();
+	  setupCheckbox();
 	};
 	window.addEventListener('load', init);
 
