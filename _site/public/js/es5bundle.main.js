@@ -5,11 +5,11 @@
 
 	TODO:
 
+	* main styling
 	* update page to enter new things
-	* add shuffle button
+	* shuffle
 	* lock rows
 	* about page
-	* main styling
 	* store prefs in localStorage
 
 	*/
