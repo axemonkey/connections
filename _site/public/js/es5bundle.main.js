@@ -5,8 +5,8 @@
 
 	TODO:
 
+	* prefill entry box from URL on load
 	* main styling
-	* update page to enter new things
 	* shuffle
 	* lock rows
 	* about page
@@ -14,6 +14,82 @@
 
 	*/
 
+	/* TO DONE:
+
+	* get things from query string
+	* update box to enter new things
+
+	*/
+
+	// ?items=clonk^jonk^bonk^chonk^honk^fonk^nonk^slonk^ponk^quonk^squonk^stonk^sponk^shonk^donk^gonk
+
+	/*
+
+	clonk
+	jonk
+	bonk
+	chonk
+	honk
+	fonk
+	nonk
+	slonk
+	ponk
+	quonk
+	squonk
+	stonk
+	sponk
+	shonk
+	donk
+	gonk
+
+	*/
+
+	const prefillEntryBox = itemsArray => {
+	  const textarea = document.querySelector('#entry');
+	  textarea.value = itemsArray.join('\n');
+	};
+	const fillItems = itemsArray => {
+	  for (const item in itemsArray) {
+	    if (Object.hasOwn(itemsArray, item)) {
+	      document.querySelector(`#item${item}`).textContent = itemsArray[item];
+	    }
+	  }
+	};
+	const getItemsFromQuery = q => {
+	  const params = new URLSearchParams(q);
+	  const itemString = params.get('items');
+	  let valid = false;
+	  if (itemString) {
+	    console.log('hooray');
+	    const itemsArray = itemString.split('^');
+	    console.log(`itemsArray.length: ${itemsArray.length}`);
+	    if (itemsArray.length === 16) {
+	      fillItems(itemsArray);
+	      prefillEntryBox(itemsArray);
+	      valid = true;
+	    }
+	  }
+	  if (!valid) {
+	    showEntryBox();
+	  }
+	};
+	const showEntryBox = () => {
+	  console.log('entry box');
+	  const container = document.querySelector('.container');
+	  const entryBox = document.querySelector('.entry-box');
+	  const nav = document.querySelector('nav');
+	  container.classList.add('hide');
+	  entryBox.classList.remove('hide');
+	  nav.classList.add('hide');
+	};
+	const checkQuery = () => {
+	  const q = document.location.search;
+	  if (q) {
+	    getItemsFromQuery(q);
+	  } else {
+	    showEntryBox();
+	  }
+	};
 	const dragStart = event => {
 	  console.log('drag starts');
 	  const item = event.target;
@@ -100,11 +176,43 @@
 	  const cb = document.querySelector('#nytc');
 	  cb.addEventListener('change', boxChange);
 	};
+	const goButton = () => {
+	  console.log('go!');
+	  const entered = document.querySelector('#entry').value;
+	  console.log(entered);
+	  const split = entered.split('\n');
+	  if (split.length === 16) {
+	    // woohoo
+	    document.location = `/?items=${split.join('^')}`;
+	  } else {
+	    // waaahhhhh
+	    // error messaging
+	    console.log('must enter 16 things');
+	  }
+	};
+	const cancelButton = () => {
+	  const container = document.querySelector('.container');
+	  const entryBox = document.querySelector('.entry-box');
+	  const nav = document.querySelector('nav');
+	  container.classList.remove('hide');
+	  entryBox.classList.add('hide');
+	  nav.classList.remove('hide');
+	};
+	const updateButton = () => {
+	  showEntryBox();
+	};
+	const setupButtons = () => {
+	  document.querySelector('#go').addEventListener('click', goButton);
+	  document.querySelector('#cancel').addEventListener('click', cancelButton);
+	  document.querySelector('#update').addEventListener('click', updateButton);
+	};
 	const init = () => {
 	  console.log('JS loaded');
 	  setupDraggables();
 	  setupDroptargets();
 	  setupCheckbox();
+	  setupButtons();
+	  checkQuery();
 	};
 	window.addEventListener('load', init);
 

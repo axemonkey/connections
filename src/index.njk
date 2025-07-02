@@ -3,19 +3,25 @@ layout: page.njk
 title: Connections Helper
 ---
 
-{% set words = ["count", "harp", "bird", "wings", "chic", "grouch", "blues", "marx", "monster", "robe", "chemical", "current", "blood", "fresh", "halo", "happening"] %}
-{% set alpha = words | sort %}
-
 <div class="container nyt-col">
-{% for word in alpha %}
-{% if loop.index0 % 4 == 0 %}
-<div class="row row{{ loop.index0 / 4 }}">
+{% for i in range(16) %}
+{% if i % 4 == 0 %}
+<div class="row row{{ i / 4 }}">
 {% endif %}
-<div class="droptarget" id="drop{{loop.index}}">
-	<div class="dragme" draggable="true" id="item{{loop.index}}">{{ word }}</div>
+<div class="droptarget" id="drop{{i}}">
+	<div class="dragme" draggable="true" id="item{{i}}">{{ i }}</div>
 </div>
-{% if loop.index0 % 4 == 3 %}
+{% if i % 4 == 3 %}
 </div>
 {% endif %}
 {% endfor %}
+</div>
+
+<div class="entry-box hide">
+	<h2>Enter 16 words, one per line</h2>
+	<textarea name="entry" id="entry" rows="16"></textarea>
+	<div id="buttons">
+		<button id="cancel">Cancel</button>
+		<button id="go">Go</button>
+	</div>
 </div>

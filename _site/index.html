@@ -23,34 +23,31 @@
 
 
 	
-
-
-
 <div class="container nyt-col">
 
 
 <div class="row row0">
 
+<div class="droptarget" id="drop0">
+	<div class="dragme" draggable="true" id="item0">0</div>
+</div>
+
+
+
 <div class="droptarget" id="drop1">
-	<div class="dragme" draggable="true" id="item1">bird</div>
+	<div class="dragme" draggable="true" id="item1">1</div>
 </div>
 
 
 
 <div class="droptarget" id="drop2">
-	<div class="dragme" draggable="true" id="item2">blood</div>
+	<div class="dragme" draggable="true" id="item2">2</div>
 </div>
 
 
 
 <div class="droptarget" id="drop3">
-	<div class="dragme" draggable="true" id="item3">blues</div>
-</div>
-
-
-
-<div class="droptarget" id="drop4">
-	<div class="dragme" draggable="true" id="item4">chemical</div>
+	<div class="dragme" draggable="true" id="item3">3</div>
 </div>
 
 </div>
@@ -59,26 +56,26 @@
 
 <div class="row row1">
 
+<div class="droptarget" id="drop4">
+	<div class="dragme" draggable="true" id="item4">4</div>
+</div>
+
+
+
 <div class="droptarget" id="drop5">
-	<div class="dragme" draggable="true" id="item5">chic</div>
+	<div class="dragme" draggable="true" id="item5">5</div>
 </div>
 
 
 
 <div class="droptarget" id="drop6">
-	<div class="dragme" draggable="true" id="item6">count</div>
+	<div class="dragme" draggable="true" id="item6">6</div>
 </div>
 
 
 
 <div class="droptarget" id="drop7">
-	<div class="dragme" draggable="true" id="item7">current</div>
-</div>
-
-
-
-<div class="droptarget" id="drop8">
-	<div class="dragme" draggable="true" id="item8">fresh</div>
+	<div class="dragme" draggable="true" id="item7">7</div>
 </div>
 
 </div>
@@ -87,26 +84,26 @@
 
 <div class="row row2">
 
+<div class="droptarget" id="drop8">
+	<div class="dragme" draggable="true" id="item8">8</div>
+</div>
+
+
+
 <div class="droptarget" id="drop9">
-	<div class="dragme" draggable="true" id="item9">grouch</div>
+	<div class="dragme" draggable="true" id="item9">9</div>
 </div>
 
 
 
 <div class="droptarget" id="drop10">
-	<div class="dragme" draggable="true" id="item10">halo</div>
+	<div class="dragme" draggable="true" id="item10">10</div>
 </div>
 
 
 
 <div class="droptarget" id="drop11">
-	<div class="dragme" draggable="true" id="item11">happening</div>
-</div>
-
-
-
-<div class="droptarget" id="drop12">
-	<div class="dragme" draggable="true" id="item12">harp</div>
+	<div class="dragme" draggable="true" id="item11">11</div>
 </div>
 
 </div>
@@ -115,31 +112,40 @@
 
 <div class="row row3">
 
+<div class="droptarget" id="drop12">
+	<div class="dragme" draggable="true" id="item12">12</div>
+</div>
+
+
+
 <div class="droptarget" id="drop13">
-	<div class="dragme" draggable="true" id="item13">marx</div>
+	<div class="dragme" draggable="true" id="item13">13</div>
 </div>
 
 
 
 <div class="droptarget" id="drop14">
-	<div class="dragme" draggable="true" id="item14">monster</div>
+	<div class="dragme" draggable="true" id="item14">14</div>
 </div>
 
 
 
 <div class="droptarget" id="drop15">
-	<div class="dragme" draggable="true" id="item15">robe</div>
-</div>
-
-
-
-<div class="droptarget" id="drop16">
-	<div class="dragme" draggable="true" id="item16">wings</div>
+	<div class="dragme" draggable="true" id="item15">15</div>
 </div>
 
 </div>
 
 
+</div>
+
+<div class="entry-box hide">
+	<h2>Enter 16 words, one per line</h2>
+	<textarea name="entry" id="entry" rows="16"></textarea>
+	<div id="buttons">
+		<button id="cancel">Cancel</button>
+		<button id="go">Go</button>
+	</div>
 </div>
 
 
@@ -152,7 +158,7 @@
 				<input type="checkbox" name="nytc" id="nytc" checked>
 			</label>
 		</li>
-		<li><a href="/update">Update</a></li>
+		<li><button id="update">Update</button></li>
 	</ul>
 </nav>
 

@@ -133,3 +133,31 @@ nav {
 .droptarget:has(.dragme.drag-over) {
 	border: 1px dashed red;
 }
+
+.hide {
+	display: none !important;
+}
+
+.entry-box {
+	max-width: 630px;
+	max-height: 420px;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	border-radius: 5px;
+}
+
+.entry-box textarea {
+	border-radius: 5px;
+	border: 1px solid blue;
+	width: 320px;
+	padding: 10px;
+}
+
+.buttons {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
