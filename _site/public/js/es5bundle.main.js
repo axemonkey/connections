@@ -5,8 +5,10 @@
 
 	TODO:
 
-	* prefill entry box from URL on load
 	* main styling
+	* break up the CSS
+	* break up the JS
+	* error messaging / validation
 	* shuffle
 	* lock rows
 	* about page
@@ -16,8 +18,11 @@
 
 	/* TO DONE:
 
+	* URL encode/decode items
+	* trim whitepace off of items
 	* get things from query string
 	* update box to enter new things
+	* prefill entry box from URL on load
 
 	*/
 
@@ -25,22 +30,22 @@
 
 	/*
 
-	clonk
-	jonk
-	bonk
-	chonk
-	honk
-	fonk
-	nonk
-	slonk
-	ponk
-	quonk
-	squonk
-	stonk
-	sponk
-	shonk
-	donk
-	gonk
+	contact
+	number
+	exchange
+	insurance
+	arrival
+	college
+	market
+	position
+	almanac
+	flight
+	dealings
+	team
+	gate
+	tan
+	destination
+	interaction
 
 	*/
 
@@ -183,7 +188,12 @@
 	  const split = entered.split('\n');
 	  if (split.length === 16) {
 	    // woohoo
-	    document.location = `/?items=${split.join('^')}`;
+	    const trimmedItems = [];
+	    for (const item of split) {
+	      const safeItem = item.replace(/\^/gm, '');
+	      trimmedItems.push(encodeURIComponent(safeItem.trim()));
+	    }
+	    document.location = `/?items=${trimmedItems.join('^')}`;
 	  } else {
 	    // waaahhhhh
 	    // error messaging

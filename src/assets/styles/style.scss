@@ -1,19 +1,17 @@
 @use "sass:color";
+@import "fonts";
 
+$mainFont: Atkinson-Hyperlegible, sans-serif;
 $targetPadding: 4px;
 $gridGap: 0;
-
-@font-face {
-	font-family: Oswald;
-	src: url("/public/fonts/Oswald-Light.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-}
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: inherit;
+	line-height: inherit;
+	color: inherit;
 }
 
 body {
@@ -23,6 +21,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	font-family: $mainFont;
 }
 
 .wrapper {
@@ -33,7 +32,6 @@ body {
 
 .container {
 	max-width: 630px;
-	max-height: 420px;
 	background-color: #f3f3ff;
 	display: flex;
 	flex-flow: column wrap;
@@ -77,6 +75,7 @@ nav {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 	font-family: Oswald, sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -140,7 +139,6 @@ nav {
 
 .entry-box {
 	max-width: 630px;
-	max-height: 420px;
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: center;
@@ -154,6 +152,7 @@ nav {
 	border: 1px solid blue;
 	width: 320px;
 	padding: 10px;
+	text-transform: uppercase;
 }
 
 .buttons {
