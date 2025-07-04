@@ -3,7 +3,6 @@
 TODO:
 
 * main styling
-* break up the CSS
 * break up the JS
 * error messaging / validation
 * shuffle
@@ -15,6 +14,7 @@ TODO:
 
 /* TO DONE:
 
+* break up the CSS
 * URL encode/decode items
 * trim whitepace off of items
 * get things from query string
