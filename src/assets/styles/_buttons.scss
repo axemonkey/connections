@@ -1,0 +1,9 @@
+.buttons {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+button {
+	padding: 6px;
+}

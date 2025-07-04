@@ -1,0 +1,17 @@
+.container {
+	max-width: 630px;
+	background-color: #f3f3ff;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	gap: $gridGap;
+	border-radius: 5px;
+}
+
+.row {
+	max-width: 630px;
+	display: flex;
+	flex-flow: row wrap;
+	gap: $gridGap;
+}

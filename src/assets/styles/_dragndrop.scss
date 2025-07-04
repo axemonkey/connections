@@ -1,0 +1,72 @@
+.droptarget {
+	padding: $targetPadding;
+	border: 1px solid transparent;
+}
+
+.dragme {
+	width: 130px;
+	height: 80px;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-family: Oswald, sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	background-color: #ffdfff;
+
+	&:hover {
+		background-color: color.adjust(#ffdfff, $lightness: -10%);
+	}
+}
+
+.nyt-col {
+	.row0 .dragme {
+		// purple
+		background-color: rgba(255 0 255 / 40%);
+
+		&:hover {
+			background-color: color.adjust(rgba(255 0 255 / 40%), $lightness: -10%);
+		}
+	}
+
+	.row1 .dragme {
+		// blue
+		background-color: rgba(0 0 255 / 30%);
+
+		&:hover {
+			background-color: color.adjust(rgba(0 0 255 / 30%), $lightness: -10%);
+		}
+	}
+
+	.row2 .dragme {
+		// green
+		background-color: rgba(0 255 0 / 40%);
+
+		&:hover {
+			background-color: color.adjust(rgba(0 255 0 / 40%), $lightness: -10%);
+		}
+	}
+
+	.row3 .dragme {
+		// yellow
+		background-color: rgba(255 255 0 / 50%);
+
+		&:hover {
+			background-color: color.adjust(rgba(255 255 0 / 50%), $lightness: -10%);
+		}
+	}
+}
+
+.dragging {
+	opacity: 0.3;
+}
+
+.droptarget.drag-over,
+.droptarget:has(.dragme.drag-over) {
+	border: 1px dashed red;
+}

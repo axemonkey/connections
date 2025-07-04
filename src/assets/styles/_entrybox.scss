@@ -1,0 +1,17 @@
+.entry-box {
+	max-width: 630px;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	border-radius: 5px;
+}
+
+.entry-box textarea {
+	border-radius: 5px;
+	border: 1px solid blue;
+	width: 320px;
+	padding: 10px;
+	text-transform: uppercase;
+}
