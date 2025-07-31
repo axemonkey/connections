@@ -23,9 +23,30 @@ TODO:
 
 */
 
-// ?items=clonk^jonk^bonk^chonk^honk^fonk^nonk^slonk^ponk^quonk^squonk^stonk^sponk^shonk^donk^gonk
+/* EASY ONE
 
-/*
+?items=rock^straw^eye^nature^nations^fiddle^guess^laugh^coming^party^resort^responder^lady^supper^rail^aid
+
+rock
+straw
+eye
+nature
+nations
+fiddle
+guess
+laugh
+coming
+party
+resort
+responder
+lady
+supper
+rail
+aid
+
+HARDER ONE
+
+?items=contact^number^exchange^insurance^arrival^college^market^position^almanac^flight^dealings^team^gate^tan^destination^interaction
 
 contact
 number
