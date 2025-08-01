@@ -67,6 +67,13 @@ interaction
 
 */
 
+const VARS = {
+	SHUFFLE_STEPS: 20,
+	ANIMTIMEOUT: 1,
+};
+
+let shuffling = false;
+
 const prefillEntryBox = itemsArray => {
 	const textarea = document.querySelector('#entry');
 	textarea.value = itemsArray.join('\n');
@@ -260,10 +267,123 @@ const updateButton = () => {
 	showEntryBox();
 };
 
+const shiftElement = stepVars => {
+	const firstItem = document.querySelector(`#whizz1`);
+	const currLeftOne = Number.parseInt(firstItem.style.left, 10);
+	const newLeftOne = currLeftOne - stepVars.stepSizeX;
+	firstItem.style.left = `${newLeftOne}px`;
+	const currTopOne = Number.parseInt(firstItem.style.top, 10);
+	const newTopOne = currTopOne - stepVars.stepSizeY;
+	firstItem.style.top = `${newTopOne}px`;
+
+	const secondItem = document.querySelector(`#whizz2`);
+	const currLeftTwo = Number.parseInt(secondItem.style.left, 10);
+	const newLeftTwo = currLeftTwo + stepVars.stepSizeX;
+	secondItem.style.left = `${newLeftTwo}px`;
+	const currTopTwo = Number.parseInt(secondItem.style.top, 10);
+	const newTopTwo = currTopTwo + stepVars.stepSizeY;
+	secondItem.style.top = `${newTopTwo}px`;
+
+	if (stepVars.currStep === stepVars.steps) {
+		const itemOne = document.querySelector(`#item${stepVars.a}`);
+		const itemOneText = itemOne.textContent;
+		const itemTwo = document.querySelector(`#item${stepVars.b}`);
+		const itemTwoText = itemTwo.textContent;
+
+		itemOne.textContent = itemTwoText;
+		itemTwo.textContent = itemOneText;
+		document.querySelector(`#whizz1`).remove();
+		document.querySelector(`#whizz2`).remove();
+		shuffle(stepVars.iteration + 1);
+	} else {
+		window.setTimeout(() => {
+			shiftElement({
+				a: stepVars.a,
+				b: stepVars.b,
+				firstTop: stepVars.firstTop,
+				secondItem: stepVars.secondItem,
+				secondLeft: stepVars.secondLeft,
+				secondTop: stepVars.secondTop,
+				stepSizeX: stepVars.stepSizeX,
+				stepSizeY: stepVars.stepSizeY,
+				currStep: stepVars.currStep + 1,
+				steps: stepVars.steps,
+				iteration: stepVars.iteration,
+			});
+		}, VARS.ANIMTIMEOUT);
+	}
+};
+
+const swap = (a, b, iteration) => {
+	const firstItem = document.querySelector(`#item${a}`);
+	const secondItem = document.querySelector(`#item${b}`);
+
+	const firstItemCopy = firstItem.cloneNode(true);
+	const firstLeft = firstItem.offsetLeft;
+	const firstTop = firstItem.offsetTop;
+	firstItemCopy.id = 'whizz1';
+	firstItemCopy.classList.add('whee');
+	firstItemCopy.style.position = 'absolute';
+	firstItemCopy.style.left = `${firstLeft}px`;
+	firstItemCopy.style.top = `${firstTop}px`;
+	document.body.append(firstItemCopy);
+
+	const secondItemCopy = secondItem.cloneNode(true);
+	const secondLeft = secondItem.offsetLeft;
+	const secondTop = secondItem.offsetTop;
+	secondItemCopy.id = 'whizz2';
+	secondItemCopy.classList.add('whee');
+	secondItemCopy.style.position = 'absolute';
+	secondItemCopy.style.left = `${secondLeft}px`;
+	secondItemCopy.style.top = `${secondTop}px`;
+	document.body.append(secondItemCopy);
+
+	const steps = VARS.SHUFFLE_STEPS;
+	const deltaX = firstLeft - secondLeft;
+	const deltaY = firstTop - secondTop;
+	const stepSizeX = deltaX / steps;
+	const stepSizeY = deltaY / steps;
+
+	shiftElement({
+		a,
+		b,
+		firstTop,
+		secondItem,
+		secondLeft,
+		secondTop,
+		stepSizeX,
+		stepSizeY,
+		currStep: 1,
+		steps,
+		iteration,
+	});
+};
+
+const shuffle = iteration => {
+	if (iteration < 16) {
+		shuffling = true;
+		const wun = iteration;
+		const too = Math.floor(Math.random() * 16);
+
+		if (wun === too) {
+			shuffle(iteration);
+		} else {
+			swap(wun, too, iteration);
+		}
+	} else {
+		shuffling = false;
+	}
+};
+
 const setupButtons = () => {
 	document.querySelector('#go').addEventListener('click', goButton);
 	document.querySelector('#cancel').addEventListener('click', cancelButton);
 	document.querySelector('#update').addEventListener('click', updateButton);
+	document.querySelector('#shuffle').addEventListener('click', () => {
+		if (!shuffling) {
+			shuffle(0);
+		}
+	});
 };
 
 const init = () => {
