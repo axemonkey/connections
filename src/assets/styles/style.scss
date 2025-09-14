@@ -1,12 +1,12 @@
 @use "sass:color";
 
-@import "vars";
-@import "fonts";
-@import "global";
-@import "header";
-@import "container";
-@import "controls";
-@import "dragndrop";
-@import "entrybox";
-@import "buttons";
-@import "utils";
+@import "partials/vars";
+@import "partials/fonts";
+@import "partials/global";
+@import "partials/header";
+@import "partials/container";
+@import "partials/controls";
+@import "partials/dragndrop";
+@import "partials/entrybox";
+@import "partials/buttons";
+@import "partials/utils";
