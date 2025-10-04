@@ -74,12 +74,12 @@ const VARS = {
 
 let shuffling = false;
 
-const prefillEntryBox = itemsArray => {
-	const textarea = document.querySelector('#entry');
-	textarea.value = itemsArray.join('\n');
+const prefillEntryBox = (itemsArray) => {
+	const textarea = document.querySelector("#entry");
+	textarea.value = itemsArray.join("\n");
 };
 
-const fillItems = itemsArray => {
+const fillItems = (itemsArray) => {
 	for (const item in itemsArray) {
 		if (Object.hasOwn(itemsArray, item)) {
 			document.querySelector(`#item${item}`).textContent = itemsArray[item];
@@ -87,13 +87,13 @@ const fillItems = itemsArray => {
 	}
 };
 
-const getItemsFromQuery = q => {
+const getItemsFromQuery = (q) => {
 	const params = new URLSearchParams(q);
-	const itemString = params.get('items');
+	const itemString = params.get("items");
 	let valid = false;
 	if (itemString) {
-		console.log('hooray');
-		const itemsArray = itemString.split('^');
+		console.log("hooray");
+		const itemsArray = itemString.split("^");
 		console.log(`itemsArray.length: ${itemsArray.length}`);
 		if (itemsArray.length === 16) {
 			fillItems(itemsArray);
@@ -107,15 +107,15 @@ const getItemsFromQuery = q => {
 };
 
 const showEntryBox = () => {
-	console.log('entry box');
+	console.log("entry box");
 
-	const container = document.querySelector('.container');
-	const entryBox = document.querySelector('.entry-box');
-	const nav = document.querySelector('nav');
+	const container = document.querySelector(".container");
+	const entryBox = document.querySelector(".entry-box");
+	const nav = document.querySelector("nav");
 
-	container.classList.add('hide');
-	entryBox.classList.remove('hide');
-	nav.classList.add('hide');
+	container.classList.add("hide");
+	entryBox.classList.remove("hide");
+	nav.classList.add("hide");
 };
 
 const checkQuery = () => {
@@ -127,51 +127,53 @@ const checkQuery = () => {
 	}
 };
 
-const dragStart = event => {
-	console.log('drag starts');
+const dragStart = (event) => {
+	console.log("drag starts");
 
 	const item = event.target;
-	const sourceZone = item.closest('.droptarget');
+	const sourceZone = item.closest(".droptarget");
 
 	const info = `${item.id}-${sourceZone.id}`;
 	console.log(info);
 
-	event.dataTransfer.setData('text/plain', info);
+	event.dataTransfer.setData("text/plain", info);
 	window.setTimeout(() => {
-		item.classList.add('dragging');
+		item.classList.add("dragging");
 	}, 0);
 };
 
-const dragEnter = event => {
+const dragEnter = (event) => {
 	// console.log(event);
 	event.preventDefault();
-	event.target.classList.add('drag-over');
+	event.target.classList.add("drag-over");
 };
 
-const dragOver = event => {
+const dragOver = (event) => {
 	// console.log(event);
 	event.preventDefault();
-	event.target.classList.add('drag-over');
+	event.target.classList.add("drag-over");
 };
 
-const dragLeave = event => {
+const dragLeave = (event) => {
 	// console.log(event);
-	event.target.classList.remove('drag-over');
+	event.target.classList.remove("drag-over");
 };
 
-const drop = event => {
+const drop = (event) => {
 	// console.log(event);
 
 	const dropLocation = event.target;
-	const dropTarget = (dropLocation.classList.contains('droptarget') ? dropLocation : dropLocation.closest('.droptarget'));
+	const dropTarget = dropLocation.classList.contains("droptarget")
+		? dropLocation
+		: dropLocation.closest(".droptarget");
 
 	console.log(`dropTarget.id: ${dropTarget.id}`);
 
-	dropTarget.classList.remove('drag-over');
+	dropTarget.classList.remove("drag-over");
 
-	const info = event.dataTransfer.getData('text/plain');
-	const dropId = info.split('-')[0];
-	const sourceId = info.split('-')[1];
+	const info = event.dataTransfer.getData("text/plain");
+	const dropId = info.split("-")[0];
+	const sourceId = info.split("-")[1];
 
 	console.log(`dropId: ${dropId}`);
 	console.log(`sourceId: ${sourceId}`);
@@ -183,91 +185,91 @@ const drop = event => {
 	// 	dropTarget.removeChild(dropTarget.firstChild);
 	// }
 
-	const displacedNode = dropTarget.querySelector('.dragme');
-	console.log('this should be the one that gets shoved out');
+	const displacedNode = dropTarget.querySelector(".dragme");
+	console.log("this should be the one that gets shoved out");
 	console.log(displacedNode);
 	const displaced = dropTarget.removeChild(displacedNode);
 	console.log(`displaced.id: ${displaced.id}`);
 	dropSource.append(displaced);
-	displaced.classList.remove('drag-over');
+	displaced.classList.remove("drag-over");
 
 	dropTarget.appendChild(draggable);
-	draggable.classList.remove('dragging');
+	draggable.classList.remove("dragging");
 };
 
 const noop = () => {
-	console.log('noop');
+	console.log("noop");
 };
 
 const setupDraggables = () => {
-	const draggables = document.querySelectorAll('.dragme');
+	const draggables = document.querySelectorAll(".dragme");
 	for (const node of draggables) {
-		node.addEventListener('dragstart', dragStart);
-		node.addEventListener('dragenter', noop);
-		node.addEventListener('dragover', noop);
+		node.addEventListener("dragstart", dragStart);
+		node.addEventListener("dragenter", noop);
+		node.addEventListener("dragover", noop);
 	}
 };
 
 const setupDroptargets = () => {
-	const targets = document.querySelectorAll('.droptarget');
+	const targets = document.querySelectorAll(".droptarget");
 
 	for (const target of targets) {
-		target.addEventListener('dragenter', dragEnter);
-		target.addEventListener('dragover', dragOver);
-		target.addEventListener('dragleave', dragLeave);
-		target.addEventListener('drop', drop);
+		target.addEventListener("dragenter", dragEnter);
+		target.addEventListener("dragover", dragOver);
+		target.addEventListener("dragleave", dragLeave);
+		target.addEventListener("drop", drop);
 	}
 };
 
-const boxChange = event => {
-	const container = document.querySelector('.container');
+const boxChange = (event) => {
+	const container = document.querySelector(".container");
 	if (event.target.checked) {
-		container.classList.add('nyt-col');
+		container.classList.add("nyt-col");
 	} else {
-		container.classList.remove('nyt-col');
+		container.classList.remove("nyt-col");
 	}
 };
 
 const setupCheckbox = () => {
-	const cb = document.querySelector('#nytc');
-	cb.addEventListener('change', boxChange);
+	const cb = document.querySelector("#nytc");
+	cb.addEventListener("change", boxChange);
 };
 
 const goButton = () => {
-	console.log('go!');
-	const entered = document.querySelector('#entry').value;
+	console.log("go!");
+	const entered = document.querySelector("#entry").value;
 	console.log(entered);
-	const split = entered.split('\n');
+	const split = entered.split("\n");
 	if (split.length === 16) {
 		// woohoo
 		const trimmedItems = [];
 		for (const item of split) {
-			const safeItem = item.replace(/\^/gm, '');
+			const safeItem = item.replace(/\^/gm, "");
 			trimmedItems.push(encodeURIComponent(safeItem.trim()));
 		}
-		document.location = `/?items=${trimmedItems.join('^')}`;
+		document.location = `/?items=${trimmedItems.join("^")}`;
 	} else {
 		// waaahhhhh
 		// error messaging
-		console.log('must enter 16 things');
+		console.log("must enter 16 things");
 	}
 };
 
 const cancelButton = () => {
-	const container = document.querySelector('.container');
-	const entryBox = document.querySelector('.entry-box');
-	const nav = document.querySelector('nav');
+	const container = document.querySelector(".container");
+	const entryBox = document.querySelector(".entry-box");
+	const nav = document.querySelector("nav");
 
-	container.classList.remove('hide');
-	entryBox.classList.add('hide');
-	nav.classList.remove('hide');
+	container.classList.remove("hide");
+	entryBox.classList.add("hide");
+	nav.classList.remove("hide");
 };
 
 const updateButton = () => {
 	showEntryBox();
 };
 
-const shiftElement = stepVars => {
+const shiftElement = (stepVars) => {
 	const firstItem = document.querySelector(`#whizz1`);
 	const currLeftOne = Number.parseInt(firstItem.style.left, 10);
 	const newLeftOne = currLeftOne - stepVars.stepSizeX;
@@ -321,9 +323,9 @@ const swap = (a, b, iteration) => {
 	const firstItemCopy = firstItem.cloneNode(true);
 	const firstLeft = firstItem.offsetLeft;
 	const firstTop = firstItem.offsetTop;
-	firstItemCopy.id = 'whizz1';
-	firstItemCopy.classList.add('whee');
-	firstItemCopy.style.position = 'absolute';
+	firstItemCopy.id = "whizz1";
+	firstItemCopy.classList.add("whee");
+	firstItemCopy.style.position = "absolute";
 	firstItemCopy.style.left = `${firstLeft}px`;
 	firstItemCopy.style.top = `${firstTop}px`;
 	document.body.append(firstItemCopy);
@@ -331,9 +333,9 @@ const swap = (a, b, iteration) => {
 	const secondItemCopy = secondItem.cloneNode(true);
 	const secondLeft = secondItem.offsetLeft;
 	const secondTop = secondItem.offsetTop;
-	secondItemCopy.id = 'whizz2';
-	secondItemCopy.classList.add('whee');
-	secondItemCopy.style.position = 'absolute';
+	secondItemCopy.id = "whizz2";
+	secondItemCopy.classList.add("whee");
+	secondItemCopy.style.position = "absolute";
 	secondItemCopy.style.left = `${secondLeft}px`;
 	secondItemCopy.style.top = `${secondTop}px`;
 	document.body.append(secondItemCopy);
@@ -359,7 +361,7 @@ const swap = (a, b, iteration) => {
 	});
 };
 
-const shuffle = iteration => {
+const shuffle = (iteration) => {
 	if (iteration < 16) {
 		shuffling = true;
 		const wun = iteration;
@@ -376,10 +378,10 @@ const shuffle = iteration => {
 };
 
 const setupButtons = () => {
-	document.querySelector('#go').addEventListener('click', goButton);
-	document.querySelector('#cancel').addEventListener('click', cancelButton);
-	document.querySelector('#update').addEventListener('click', updateButton);
-	document.querySelector('#shuffle').addEventListener('click', () => {
+	document.querySelector("#go").addEventListener("click", goButton);
+	document.querySelector("#cancel").addEventListener("click", cancelButton);
+	document.querySelector("#update").addEventListener("click", updateButton);
+	document.querySelector("#shuffle").addEventListener("click", () => {
 		if (!shuffling) {
 			shuffle(0);
 		}
@@ -387,7 +389,7 @@ const setupButtons = () => {
 };
 
 const init = () => {
-	console.log('JS loaded');
+	console.log("JS loaded");
 	setupDraggables();
 	setupDroptargets();
 	setupCheckbox();
@@ -395,4 +397,4 @@ const init = () => {
 	checkQuery();
 };
 
-window.addEventListener('load', init);
+window.addEventListener("load", init);
