@@ -1,39 +1,61 @@
-// Oswald
+// BarlowCondensed
 @font-face {
-	font-family: "Oswald";
-	src: url("/public/fonts/Oswald-Light.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-}
-
-// Atkinson-Hyperlegible
-@font-face {
-	font-family: "Atkinson-Hyperlegible";
-	src: url("/public/fonts/Atkinson-Hyperlegible-Regular-102a.woff2")
-		format("woff2");
+	font-family: "BarlowCondensed"; // by Jeremy Tribby - https://tribby.com/fonts/barlow/
+	src: url("/public/fonts/barlowcondensed-light-webfont.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: "Atkinson-Hyperlegible";
-	src: url("/public/fonts/Atkinson-Hyperlegible-Bold-102a.woff2")
-		format("woff2");
-	font-weight: bold;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "Atkinson-Hyperlegible";
-	src: url("/public/fonts/Atkinson-Hyperlegible-Italic-102a.woff2")
+	font-family: "BarlowCondensed";
+	src: url("/public/fonts/barlowcondensed-lightitalic-webfont.woff2")
 		format("woff2");
 	font-weight: normal;
 	font-style: italic;
 }
 
 @font-face {
-	font-family: "Atkinson-Hyperlegible";
-	src: url("/public/fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2")
+	font-family: "BarlowCondensed";
+	src: url("/public/fonts/barlowcondensed-semibold-webfont.woff2")
+		format("woff2");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "BarlowCondensed";
+	src: url("/public/fonts/barlowcondensed-semibolditalic-webfont.woff2")
+		format("woff2");
+	font-weight: bold;
+	font-style: italic;
+}
+
+// AtkinsonHyperlegibleNext
+@font-face {
+	font-family: "AtkinsonHyperlegibleNext"; // by The Braille Institute - https://www.brailleinstitute.org/freefont/
+	src: url("/public/fonts/AtkinsonHyperlegibleNext-Light.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "AtkinsonHyperlegibleNext";
+	src: url("/public/fonts/AtkinsonHyperlegibleNext-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "AtkinsonHyperlegibleNext";
+	src: url("/public/fonts/AtkinsonHyperlegibleNext-LightItalic.woff2")
+		format("woff2");
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "AtkinsonHyperlegibleNext";
+	src: url("/public/fonts/AtkinsonHyperlegibleNext-BoldItalic.woff2")
 		format("woff2");
 	font-weight: bold;
 	font-style: italic;
