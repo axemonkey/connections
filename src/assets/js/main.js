@@ -5,7 +5,6 @@ TODO:
 * main styling
 * break up the JS
 * error messaging / validation
-* shuffle
 * lock rows
 * about page
 * store prefs in localStorage
@@ -14,6 +13,7 @@ TODO:
 
 /* TO DONE:
 
+* shuffle
 * break up the CSS
 * URL encode/decode items
 * trim whitepace off of items
