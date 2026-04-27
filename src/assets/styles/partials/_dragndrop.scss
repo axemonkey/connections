@@ -65,9 +65,11 @@
 
 .dragging {
 	opacity: 0.3;
+	transform: rotate(3deg);
 }
 
 .droptarget.drag-over,
 .droptarget:has(.dragme.drag-over) {
 	border: 1px dashed red;
+	transform: rotate(-3deg);
 }
